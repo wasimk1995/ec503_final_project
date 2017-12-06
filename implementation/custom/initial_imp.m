@@ -23,6 +23,6 @@ for i=3:x_n
     color_image = imread([image_dir,jpeg_listing(i).name]);
     grey_image = rgb2gray(imresize(color_image,pixels));
     edges = edge(grey_image,'Sobel');
-    data(i,:) = edges(:)';
+    data(i-2,:) = edges(:)';
 end
-save('data_300_300.mat','data','labels');
+save('data_300_300.mat','-v7.3','data','labels');

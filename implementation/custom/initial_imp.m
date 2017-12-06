@@ -1,5 +1,5 @@
-label_dir = '/Users/wasimkhan/Desktop/BostonUniversity/grad/learning_from_data/project/datasets/VOC2012/Annotations/';
-image_dir = '/Users/wasimkhan/Desktop/BostonUniversity/grad/learning_from_data/project/datasets/VOC2012/JPEGImages/'
+label_dir = '../../datasets/VOC2012/Annotations/';
+image_dir = '../../datasets/VOC2012/JPEGImages/'
 xml_listing = dir(label_dir);
 jpeg_listing = dir(image_dir);
 x_n = size(xml_listing,1);

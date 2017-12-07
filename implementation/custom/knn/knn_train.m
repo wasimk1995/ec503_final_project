@@ -1,4 +1,5 @@
 function [KNNmodel] = knn_train(X_train, Y_train)
+    disp("Entered knn_train")
     KNNmodel.X_train = X_train;
     KNNmodel.Y_train = Y_train;
     
@@ -16,5 +17,5 @@ function [KNNmodel] = knn_train(X_train, Y_train)
     end
     
     KNNmodel.preprocess_train = preprocess_train;
-    
+    disp("Exiting knn_train")
 end

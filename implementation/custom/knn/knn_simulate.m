@@ -1,5 +1,6 @@
 %LOAD DATA
-load('data_300_300.mat');
+%load('data_300_300.mat');
+disp("Data Loaded")
 
 %%
 %CREATE SMALLER SET AND PARTITION DATA
@@ -21,6 +22,7 @@ X_train = X(train_i,:);
 Y_train = Y(train_i,:);
 X_test = X(~train_i,:);
 Y_test = Y(~train_i,:);
+disp("Data Partitioned")
 
 %%
 %TRAIN DATA
@@ -28,12 +30,7 @@ knn_model = knn_train(X_train,Y_train);
 
 %%
 %TEST DATA
-k = 15;
-for i=1:k
-    [Y_pred,posteriors] = knn_test(X_test,knn_model,i);
-    tmper = [i,sum(Y_pred == Y_test) / size(Y_test,1)]
-    accuracy(i) = sum(Y_pred == Y_test) / size(Y_test,1);
-end
-
-%%
-x=1;
+k = size(X_train,1);
+[Y_pred,posteriors] = knn_test(X_test,knn_model,k);
+accuracy = sum(Y_pred == Y_test*ones(1,k),1) / size(Y_test,1);
+[best_accuracy,best_k] = max(accuracy)

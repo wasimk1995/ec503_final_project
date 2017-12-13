@@ -14,16 +14,16 @@ disp("Data Loaded")
 
 %%
 %Create Synthetic Data
-X=[1:1000,2001:3000,4001:5000,6001:7000,8001:11000];
+X=[1:1000,1001:3000];%,4001:5000,6001:7000,8001:11000];
 X = (X/size(X,2))';
 
 Y(1:1000,1) = (.2*(1:1000)+100+.05*rand(1,1000))';
-Y(1001:2000,1) = (-.4*(1001:2000)+50+.04*rand(1,1000))';
-Y(2001:3000,1) = (.5*(2001:3000)+200+.01*rand(1,1000))';
-Y(3001:4000,1) = (-.1*(3001:4000)+832+.03*rand(1,1000))';
-Y(4001:7000,1) = (-.1*(4001:7000)+832+.12*rand(1,3000))';
+Y(1001:3000,1) = (-.4*(1001:3000)+50+.04*rand(1,2000))';
+%Y(2001:3000,1) = (.5*(2001:3000)+200+.01*rand(1,1000))';
+%Y(3001:4000,1) = (-.1*(3001:4000)+832+.03*rand(1,1000))';
+%Y(4001:7000,1) = (-.1*(4001:7000)+832+.12*rand(1,3000))';
 Y = Y/sum(Y);
-%scatter(X,Y,1)
+scatter(X,Y,1)
 
 %Divide data into training and testing
 p_train = .7;
@@ -42,7 +42,7 @@ disp("Data Partitioned")
 %for k=1:5
 %%
 %TRAIN DATA
-k=5;
+k=2;
 t_max_em = 300;
 t_max_grad = 500;
 lambda = 1;
@@ -54,7 +54,7 @@ Y_pred = moe_test(X_test,Y_test,MOE_model,k);
 figure, scatter(X_test,Y_test,1,'b')
 hold on
 scatter(X_test,Y_pred,1,'r')
-title('Mixture of Experts k=5')
+title('Mixture of Experts k=2')
 xlabel('x')
 ylabel('y')
 x=1;

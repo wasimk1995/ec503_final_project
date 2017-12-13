@@ -102,7 +102,7 @@ function W_out = logistic_reg_train_mixture(X_train,Y_train,W,R,k,eta,lambda)
 
     W_x = X_train*W;
     p_y_x_D = exp(W_x)./(sum(exp(W_x),2)*ones(1,k));
-    grad_nll = transpose(X_train)*((p_y_x_D - R));
+    grad_nll = transpose(X_train)*((R.*p_y_x_D - R));
     grad_f = grad_nll + lambda*W;
     W_out = W  - eta*grad_f;
     if(sum(sum(isnan(W_out))))

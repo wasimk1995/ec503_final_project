@@ -1,17 +1,24 @@
-% dataset=load('data_300_300.mat');
-% X=dataset.data;
-% Y=dataset.labels;
-% clear dataset
+dataset=load('data_300_300.mat');
+data=dataset.data;
+labels=dataset.labels;
+p_data = 0.1;
+size_data = size(data,1);
+data_i = false(size_data,1);
+data_i(1:round(p_data*size_data)) = true;
+X_old = data(data_i,:);
+Y = labels(data_i,:);
+[~,X,~]=pca(X_old);
 %% train random forests
-n=17125;
+n=1713;
 numofclass=2;
 numoftrees=10;
-D=90000;
+D=1712;
 m=150;
 CART=zeros(m,numoftrees);
 for t=1:numoftrees
-    randsamplelist=randi(n,n,1);    randfeaturelist=randperm(D);
-    randfeaturelist=randfeaturelist(1,1:1000);
+    randsamplelist=randi(n,n,1);    
+    randfeaturelist=randperm(D);
+    randfeaturelist=randfeaturelist(1,1:1712);
     for j=1:m
         idx1=Y(randsamplelist,1)==1;
         idx0=Y(randsamplelist,1)==0;
@@ -51,6 +58,6 @@ for t=1:numoftrees
         end
     end
 end
-y=sum(Ypredicted,2)>=(numoftrees/2);
+y=sum(Ypredicted,2)>(numoftrees/2);
 CCR=sum(y==Y)/n;
 fprintf('The CCR with numoftrees=%d m=%d is: %f.\n',numoftrees,m,CCR);

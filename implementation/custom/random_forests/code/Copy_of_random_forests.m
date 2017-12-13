@@ -1,7 +1,7 @@
-% dataset=load('data_300_300.mat');
-% X=dataset.data;
-% Y=dataset.labels;
-% clear dataset
+dataset=load('data_300_300.mat');
+X=dataset.data;
+Y=dataset.labels;
+clear dataset
 
 %% train random forests
 n=17125;

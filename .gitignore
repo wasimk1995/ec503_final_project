@@ -2,4 +2,5 @@ datasets/
 *.mat
 description/
 opensource/
+papers/
 .DS_Store

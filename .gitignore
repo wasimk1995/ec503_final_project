@@ -1,3 +1,4 @@
 datasets/
 *.mat
+description/
 .DS_Store
